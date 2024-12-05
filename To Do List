@@ -1,0 +1,44 @@
+To-Do List
+Models
+[ ] Create at least 4 additional independent models beyond User/Profile.
+
+2. Views
+[ ] Implement at least 10 views, with at least 5 being class-based views (CBVs).
+[ ] Ensure CRUD functionality for all models.
+
+Forms
+[ ] Create at least 5 forms, including registration, login, and model forms.
+
+4. Templates
+[ ] Create list view templates for displaying collections of items.
+[ ] Create detail view templates for individual item pages.
+[ ] Create form templates for create/edit operations.
+[ ] Implement error pages (404, 500).
+
+5. Admin Customization
+[ ] Add at least 5 custom options to the admin interface (filters, list display, etc.).
+[ ] Set up admin groups with different permissions.
+
+6. Authentication & Authorization
+[ ] Implement login, register, and logout functionality.
+[ ] Set up permissions for public and private parts of the site.
+
+Security
+[ ] Implement CSRF protection, XSS prevention, and SQL injection protection.
+
+Exception Handling & Validation
+[ ] Implement server-side and client-side validation.
+[ ] Add exception handling to views.
+
+9. Responsive Design
+[ ] Ensure all pages are responsive using Bootstrap 4.
+
+Bonus Features (Optional)
+[ ] Add unit and integration tests.
+[ ] Implement asynchronous views.
+[ ] Extend the project with REST capabilities.
+[ ] Deploy the project.
+
+11. Project Management
+[ ] Make regular commits to your version control system.
+[ ] Prepare for the project presentation and defense.
