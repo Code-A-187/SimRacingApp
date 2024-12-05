@@ -9,7 +9,8 @@
   - [X] Register view (CBV)
   - [X] Logout view (FBV)
   - [X] Profile details view (CBV)
-  - [ ] Remaining views needed: 6
+  - [x] Profile Edit view (CBV)
+  - [ ] Remaining views needed: 5
 - [ ] Ensure CRUD functionality for all models
 
 3. **Forms**
