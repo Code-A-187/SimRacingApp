@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from django.contrib import messages
 from django.views.generic.edit import UpdateView
+from django.views.generic import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from simracingApp.accounts.forms import UserAuthenticationForm, ProfileEditForm, UserRegisterForm
 
@@ -73,3 +75,19 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
                 'pk': self.object.pk
             }
         )
+
+
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = UserModel
+    template_name = 'accounts/profile-delete.html'
+    success_url = reverse_lazy('home-page')
+    
+    def test_func(self):
+        # Only allow users to delete their own profile
+        profile = self.get_object()
+        return self.request.user == profile
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, 'Your profile has been successfully deleted.')
+        logout(request)  # Log out the user after deletion
+        return super().delete(request, *args, **kwargs)

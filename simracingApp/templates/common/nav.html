@@ -19,12 +19,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'home-page' %}">Home</a>
                 </li>
-                {% if user %}
-                    <div style="display:none">
-                        User: {{ user }}
-                        Authenticated: {{ user.is_authenticated }}
-                    </div>
-                {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{% url 'profile-details' pk=user.pk %}">Profile</a>
