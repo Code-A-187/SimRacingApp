@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark py-3">
+    <div class="container">
+        <a class="navbar-brand text-white mr-2" href="{% url 'home-page' %}">SimRacing</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light border-right-0" style="cursor: pointer;" onclick="document.getElementById('search-input').focus();">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                    </div>
+                    <input id="search-input" class="form-control border-left-0" type="search" placeholder="Search..." aria-label="Search">
+                </div>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'home-page' %}">Home</a>
+                </li>
+                {% if user %}
+                    <div style="display:none">
+                        User: {{ user }}
+                        Authenticated: {{ user.is_authenticated }}
+                    </div>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'profile-details' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light mr-2" href="{% url 'login-page' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="{% url 'register-page' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

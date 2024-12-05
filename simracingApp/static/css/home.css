@@ -1,0 +1,118 @@
+:root {
+    --navbar-height: 56px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.content {
+    min-height: calc(100vh - var(--navbar-height));
+    padding: 20px 0;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-item.active .nav-link {
+    font-weight: bold;
+}
+
+.nav-link {
+    transition: opacity 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 15px 0;
+    }
+}
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 1rem 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.jumbotron {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    position: relative;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+}
+
+.jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    border-radius: 0.3rem;
+}
+
+.jumbotron .container {
+    position: relative;
+    z-index: 2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}
+
+.jumbotron .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.jumbotron .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.jumbotron h1.display-4 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    color: #e0e0e0;
+}
+
+.jumbotron .lead {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #d0d0d0;
+}
+
+.jumbotron p {
+    font-weight: 500;
+    color: #c0c0c0;
+}
+
+@media (min-width: 992px) {
+    .jumbotron {
+        min-height: 450px;
+        padding: 6rem 2rem;
+    }
+}

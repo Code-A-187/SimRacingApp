@@ -1,0 +1,58 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Profile - {{ profile.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="Profile Picture" class="rounded-circle img-fluid mb-3" style="max-width: 150px;">
+                    {% else %}
+                        <img src="{% static 'images/default-avatar.png' %}" alt="Default Profile Picture" class="rounded-circle img-fluid mb-3" style="max-width: 150px;">
+                    {% endif %}
+                    <h3 class="card-title">{{ profile.username }}</h3>
+                    <p class="text-muted">{{ profile.email }}</p>
+                    <p class="card-text">{{ profile.bio|default:"No bio available" }}</p>
+                    <a href="#" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Racing Statistics</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Role</h5>
+                            <p>{{ profile.role|default:"Not specified" }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Races Completed</h5>
+                            <p>0</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Best Position</h5>
+                            <p>N/A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4>Recent Activity</h4>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">No recent activity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

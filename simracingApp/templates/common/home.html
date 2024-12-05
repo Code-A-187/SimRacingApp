@@ -1,0 +1,46 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to SimRacing App{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="jumbotron jumbotron-fluid text-center"
+         style="background-image: url('{% static "images/simracing-background.jpg" %}');">
+        <div class="container">
+            <h1 class="display-4">Welcome to SimRacing App</h1>
+            <p class="lead">Connect with fellow sim racers, share your experiences, and improve your skills.</p>
+            <hr class="my-4">
+            <p>Join our community today and take your sim racing passion to the next level!</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Join Now</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Latest News</h2>
+            <ul class="list-group">
+                <li class="list-group-item">New iRacing Season Starts Next Week</li>
+                <li class="list-group-item">Assetto Corsa Competizione Updates Coming Soon</li>
+                <li class="list-group-item">Community Race Event This Weekend</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Top Racers</h2>
+            <ul class="list-group">
+                <li class="list-group-item">John Doe - iRacing</li>
+                <li class="list-group-item">Jane Smith - Assetto Corsa</li>
+                <li class="list-group-item">Mike Johnson - rFactor 2</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Featured Tracks</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Spa-Francorchamps</li>
+                <li class="list-group-item">Nürburgring Nordschleife</li>
+                <li class="list-group-item">Monza</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
