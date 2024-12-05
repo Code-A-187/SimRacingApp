@@ -3,18 +3,19 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login, logout
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from django.contrib import messages
+from django.views.generic.edit import UpdateView
 
-from simracingApp.accounts.forms import UserCreationForm, UserAuthenticationForm
+from simracingApp.accounts.forms import UserAuthenticationForm, ProfileEditForm, UserRegisterForm
 
 UserModel = get_user_model()
 
 
 class UserRegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = UserRegisterForm
     template_name = 'accounts/register-page.html'
     success_url = reverse_lazy('home-page')
 
@@ -46,7 +47,7 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
-        return self.request.user
+        return get_object_or_404(UserModel, pk=self.kwargs['pk'])
 
 
 def logout_user(request):
@@ -54,3 +55,21 @@ def logout_user(request):
     messages.success(request, 'You have been successfully logged out.')
     return redirect('home-page')
 
+
+class ProfileEditView(LoginRequiredMixin, UpdateView):
+    model = UserModel
+    form_class = ProfileEditForm
+    template_name = 'accounts/profile-edit.html'
+    success_url = reverse_lazy('profile-details')
+
+    def test_func(self):
+        profile = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        return self.request.user == profile.user
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'profile-details',
+            kwargs={
+                'pk': self.object.pk
+            }
+        )

@@ -17,7 +17,7 @@
                     <h3 class="card-title">{{ profile.username }}</h3>
                     <p class="text-muted">{{ profile.email }}</p>
                     <p class="card-text">{{ profile.bio|default:"No bio available" }}</p>
-                    <a href="#" class="btn btn-primary">Edit Profile</a>
+                    <a href="{% url 'profile-edit' pk=profile.pk %}" class="btn btn-primary">Edit Profile</a>
                 </div>
             </div>
         </div>

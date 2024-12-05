@@ -1,44 +1,62 @@
-To-Do List
-Models
-[ ] Create at least 4 additional independent models beyond User/Profile.
+# To-Do List
 
-2. Views
-[ ] Implement at least 10 views, with at least 5 being class-based views (CBVs).
-[ ] Ensure CRUD functionality for all models.
+1. **Models**
+- [X] Create at least 4 additional independent models beyond User/Profile
 
-Forms
-[ ] Create at least 5 forms, including registration, login, and model forms.
+2. **Views**
+- [ ] Implement at least 10 views, with at least 5 being class-based views (CBVs)
+  - [X] Login view (CBV)
+  - [X] Register view (CBV)
+  - [X] Logout view (FBV)
+  - [X] Profile details view (CBV)
+  - [ ] Remaining views needed: 6
+- [ ] Ensure CRUD functionality for all models
 
-4. Templates
-[ ] Create list view templates for displaying collections of items.
-[ ] Create detail view templates for individual item pages.
-[ ] Create form templates for create/edit operations.
-[ ] Implement error pages (404, 500).
+3. **Forms**
+- [ ] Create at least 5 forms
+  - [X] Registration form
+  - [X] Login form
+  - [ ] 3 more forms needed
 
-5. Admin Customization
-[ ] Add at least 5 custom options to the admin interface (filters, list display, etc.).
-[ ] Set up admin groups with different permissions.
+4. **Templates**
+- [ ] Create list view templates
+- [ ] Create detail view templates
+- [ ] Create form templates
+- [ ] Implement error pages (404, 500)
+- [X] Base template structure (base.html, nav.html, footer.html)
 
-6. Authentication & Authorization
-[ ] Implement login, register, and logout functionality.
-[ ] Set up permissions for public and private parts of the site.
+5. **Admin Customization**
+- [X] Add at least 5 custom options to the admin interface
+- [X] Set up admin groups with different permissions
 
-Security
-[ ] Implement CSRF protection, XSS prevention, and SQL injection protection.
+6. **Authentication & Authorization**
+- [X] Implement login functionality
+- [X] Implement register functionality
+- [X] Implement logout functionality
+- [ ] Set up permissions for public/private parts
 
-Exception Handling & Validation
-[ ] Implement server-side and client-side validation.
-[ ] Add exception handling to views.
+7. **Security**
+- [ ] Implement CSRF protection
+- [ ] Implement XSS prevention
+- [ ] Implement SQL injection protection
 
-9. Responsive Design
-[ ] Ensure all pages are responsive using Bootstrap 4.
+8. **Exception Handling & Validation**
+- [ ] Implement server-side validation
+- [ ] Implement client-side validation
+- [ ] Add exception handling to views
 
-Bonus Features (Optional)
-[ ] Add unit and integration tests.
-[ ] Implement asynchronous views.
-[ ] Extend the project with REST capabilities.
-[ ] Deploy the project.
+9. **Responsive Design**
+- [X] Bootstrap 4 integration
+- [ ] Ensure all pages are responsive
 
-11. Project Management
-[ ] Make regular commits to your version control system.
-[ ] Prepare for the project presentation and defense.
+10. **Bonus Features (Optional)**
+- [ ] Add unit and integration tests
+- [ ] Implement asynchronous views
+- [ ] Extend project with REST capabilities
+- [ ] Deploy the project
+
+11. **Project Management**
+- [X] Project structure setup
+- [X] Static files (CSS, JS, images)
+- [X] Documentation (README.md, requirements.txt)
+- [ ] Regular commits

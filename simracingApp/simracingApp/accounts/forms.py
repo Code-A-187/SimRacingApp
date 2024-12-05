@@ -23,7 +23,7 @@ class UserAuthenticationForm(AuthenticationForm):
         })
 
 
-class UserCreationForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     
     class Meta:
@@ -49,3 +49,46 @@ class UserCreationForm(UserCreationForm):
             'class': 'form-control',
             'placeholder': 'Confirm password'
         })
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ['username', 'email', 'avatar', 'bio', 'role']
+        widgets = {
+            'username': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your username'
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your email'
+                }
+            ),
+            'bio': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Tell us about yourself',
+                    'rows': 4
+                }
+            ),
+            'role': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'avatar': forms.FileInput(
+                attrs={
+                    'class': 'form-control-file'
+                }
+            ),
+        }
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if UserModel.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise forms.ValidationError('Email is already in use.')
+        return email

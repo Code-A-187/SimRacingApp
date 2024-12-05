@@ -27,7 +27,7 @@
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'profile-details' %}">Profile</a>
+                        <a class="nav-link text-white" href="{% url 'profile-details' pk=user.pk %}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
