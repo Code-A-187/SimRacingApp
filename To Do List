@@ -9,35 +9,40 @@
   - [X] Register view (CBV)
   - [X] Logout view (FBV)
   - [X] Profile details view (CBV)
-  - [x] Profile Edit view (CBV)
-  - [ ] Remaining views needed: 5
+  - [X] Profile Edit view (CBV)
+  - [X] Profile delete view (CBV)
+  - [ ] Remaining views needed: 4
 - [ ] Ensure CRUD functionality for all models
 
 3. **Forms**
 - [ ] Create at least 5 forms
   - [X] Registration form
   - [X] Login form
-  - [ ] 3 more forms needed
+  - [X] Profile edit form
+  - [ ] 2 more forms needed
 
 4. **Templates**
 - [ ] Create list view templates
 - [ ] Create detail view templates
-- [ ] Create form templates
+- [X] Create form templates
+  - [X] Profile edit template
+  - [X] Profile delete template
 - [ ] Implement error pages (404, 500)
 - [X] Base template structure (base.html, nav.html, footer.html)
 
 5. **Admin Customization**
-- [X] Add at least 5 custom options to the admin interface
-- [X] Set up admin groups with different permissions
+- [ ] Add at least 5 custom options to the admin interface
+- [ ] Set up admin groups with different permissions
 
 6. **Authentication & Authorization**
 - [X] Implement login functionality
 - [X] Implement register functionality
 - [X] Implement logout functionality
+- [X] Profile CRUD operations
 - [ ] Set up permissions for public/private parts
 
 7. **Security**
-- [ ] Implement CSRF protection
+- [X] Implement CSRF protection (visible in profile-edit.html)
 - [ ] Implement XSS prevention
 - [ ] Implement SQL injection protection
 
@@ -48,6 +53,7 @@
 
 9. **Responsive Design**
 - [X] Bootstrap 4 integration
+- [X] Crispy forms integration
 - [ ] Ensure all pages are responsive
 
 10. **Bonus Features (Optional)**
