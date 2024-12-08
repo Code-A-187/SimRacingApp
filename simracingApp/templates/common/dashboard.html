@@ -1,0 +1,73 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - SimRacing App{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Sidebar: Promoted Events -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky pt-3">
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Promoted Events</span>
+                </h5>
+                <ul class="nav flex-column">
+                    {% for event in promoted_events %}
+                        {% include 'components/event_card.html' with event=event %}
+                    {% endfor %}
+                </ul>
+                {% if promoted_events.has_other_pages %}
+                    {% include 'components/pagination.html' with page_obj=promoted_events %}
+                {% endif %}
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main role="main" class="col-md-6 ml-sm-auto col-lg-8 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
+            </div>
+
+            {% if user.is_authenticated %}
+                <!-- Post Creation Form -->
+                {% include 'components/post_form.html' %}
+            {% endif %}
+
+            <!-- Posts Feed -->
+            <div class="posts-feed mt-4">
+                {% for post in posts %}
+                    {% include 'components/post_card.html' with post=post %}
+                {% endfor %}
+            </div>
+
+            {% if posts.has_other_pages %}
+                {% include 'components/pagination.html' with page_obj=posts %}
+            {% endif %}
+        </main>
+
+        <!-- Right Sidebar: User's Events and News Feed -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky pt-3">
+                {% if user.is_authenticated %}
+                    <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Your Events</span>
+                    </h5>
+                    <ul class="nav flex-column">
+                        {% for event in user_events %}
+                            {% include 'components/event_card.html' with event=event %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>News Feed</span>
+                </h5>
+                <div class="px-3">
+                    {% include 'components/news_feed.html' %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+{% endblock %}

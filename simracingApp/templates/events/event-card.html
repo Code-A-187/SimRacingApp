@@ -1,0 +1,7 @@
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'event_detail' event.id %}">
+        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid mb-2">
+        <span>{{ event.title }}</span>
+    </a>
+</li>
+
