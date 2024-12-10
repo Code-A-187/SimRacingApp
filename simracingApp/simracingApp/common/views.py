@@ -2,6 +2,7 @@ from django.views.generic import ListView
 from django.shortcuts import redirect
 from django.contrib import messages
 from simracingApp.posts.models import Post
+from simracingApp.events.models import Event
 from simracingApp.posts.forms import PostAddForm, PostCommentForm
 
 
@@ -17,10 +18,14 @@ class HomeView(ListView):
         if not self.request.user.is_authenticated:
             return super().get_context_data(**kwargs)
             
+        # Get the latest 5 events
+        latest_events = Event.objects.all()[:5]
+        
         return {
             **super().get_context_data(**kwargs),
             'form': PostAddForm(),
             'comment_form': PostCommentForm(),
+            'latest_events': latest_events,
             'dashboard': True
         }
 

@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-{% block title %}Edit Event{% endblock %}
+{% block title %}Create Event{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="mb-0">Edit Event</h4>
+                    <h4 class="mb-0">Create New Event</h4>
                 </div>
                 <div class="card-body">
                     {% if messages %}
@@ -26,44 +26,39 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <input type="text" name="title" class="form-control" 
-                                   placeholder="Event Title" required
-                                   value="{{ event.title }}">
+                                   placeholder="Event Title" required>
                         </div>
                         <div class="form-group">
                             <textarea name="description" class="form-control" rows="3" 
-                                    placeholder="Event Description" required>{{ event.description }}</textarea>
+                                    placeholder="Event Description" required></textarea>
                         </div>
                         <div class="form-group">
                             <input type="url" name="image_url" class="form-control" 
-                                   placeholder="Add an image URL..."
-                                   value="{{ event.image_url }}">
+                                   placeholder="Add an image URL...">
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Start Date</label>
-                                    <input type="date" name="start_date" class="form-control" required
-                                           value="{{ event.start_date|date:'Y-m-d' }}">
+                                    <input type="date" name="start_date" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>End Date</label>
-                                    <input type="date" name="end_date" class="form-control" required
-                                           value="{{ event.end_date|date:'Y-m-d' }}">
+                                    <input type="date" name="end_date" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Race Start Time</label>
-                                    <input type="time" name="race_time" class="form-control" required
-                                           value="{{ event.race_time|time:'H:i' }}">
+                                    <input type="time" name="race_time" class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="{% url 'event-details' pk=event.pk %}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <a href="{% url 'event-list' %}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Create Event</button>
                         </div>
                     </form>
                 </div>
@@ -71,4 +66,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 

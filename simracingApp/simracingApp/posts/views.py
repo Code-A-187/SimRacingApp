@@ -4,6 +4,8 @@ from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.contrib import messages
 
 from .forms import PostAddForm, PostCommentForm, PostEditForm
 from .models import Post
@@ -70,9 +72,14 @@ def post_delete(request, pk):
         
     if request.method == 'POST':
         post.delete()
+        messages.success(request, "Post successfully deleted.")
         return redirect('home-page')
         
-    return render(request, 'posts/post-delete.html', {'post': post})
+    return render(request, 'common/delete.html', {
+        'object_type': 'Post',
+        'object_name': post.content[:50] + '...' if len(post.content) > 50 else post.content,
+        'cancel_url': reverse_lazy('post-details', kwargs={'pk': post.pk})
+    })
 
 
 @login_required
@@ -96,4 +103,5 @@ def toggle_like(request, pk):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-    return redirect(request.META.get('HTTP_REFERER', 'home-page'))
+        return redirect(request.META.get('HTTP_REFERER', 'home-page'))
+    return JsonResponse({'error': 'Invalid request'}, status=400)

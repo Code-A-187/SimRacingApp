@@ -1,0 +1,23 @@
+{% load static %}
+<div class="card event-card-small mb-2">
+    <div class="row no-gutters">
+        {% if event.image_url %}
+        <div class="col-4">
+            <img src="{{ event.image_url }}" class="card-img" alt="{{ event.title }}"
+                 onerror="this.style.display='none'" onload="this.style.display='block'">
+        </div>
+        {% endif %}
+        <div class="col">
+            <div class="card-body py-2 px-3">
+                <h6 class="card-title mb-1">{{ event.title }}</h6>
+                <p class="card-text">
+                    <small class="text-muted">
+                        {{ event.start_date|date:"M d" }} - {{ event.end_date|date:"M d" }}
+                        <br>
+                        {{ event.race_time|time:"H:i" }}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,27 +1,70 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-{% block title %}Post Details{% endblock %}
+{% block title %}{{ event.title }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {% include 'components/post_card.html' with post=post %}
-            {% if user.is_authenticated %}
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Add a Comment</h5>
-                        <form method="post" action="{% url 'add_comment' post.id %}">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea class="form-control" name="content" rows="3" required></textarea>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <a href="{% url 'author-posts' pk=event.author.pk %}" class="text-decoration-none">
+                                {% if event.author.avatar %}
+                                    <img src="{{ event.author.avatar.url }}" alt="{{ event.author.username }}" class="rounded-circle mr-2 avatar-md">
+                                {% else %}
+                                    <img src="{% static 'images/default-avatar.png' %}" alt="Default avatar" class="rounded-circle mr-2 avatar-md">
+                                {% endif %}
+                                <span class="text-dark">{{ event.author.username }}</span>
+                            </a>
+                        </div>
+                        {% if user == event.author %}
+                            <div>
+                                <a href="{% url 'event-edit' event.pk %}" class="btn btn-sm btn-link p-0 mr-2">
+                                    <i class="fas fa-edit text-primary"></i>
+                                </a>
+                                <a href="{% url 'event-delete' event.pk %}" class="btn btn-sm btn-link p-0">
+                                    <i class="fas fa-trash-alt text-danger"></i>
+                                </a>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                        {% endif %}
                     </div>
                 </div>
-            {% endif %}
+                <div class="card-body">
+                    {% if event.image_url %}
+                        <div class="event-image-container mb-4">
+                            <img src="{{ event.image_url }}" alt="{{ event.title }}" class="img-fluid rounded">
+                        </div>
+                    {% endif %}
+                    <h4 class="card-title">{{ event.title }}</h4>
+                    <div class="event-dates mb-3">
+                        <p class="text-muted mb-1">
+                            <i class="far fa-calendar-alt"></i> 
+                            {{ event.start_date|date:"M d" }} - {{ event.end_date|date:"M d, Y" }}
+                        </p>
+                        <p class="text-muted">
+                            <i class="far fa-clock"></i> 
+                            Race starts at: {{ event.race_time|time:"H:i" }}
+                        </p>
+                    </div>
+                    <p class="card-text">{{ event.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <form method="post" action="{% url 'toggle-subscribe' event.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">
+                                {% if user in event.subscribers.all %}
+                                    Unsubscribe
+                                {% else %}
+                                    Subscribe
+                                {% endif %}
+                            </button>
+                        </form>
+                        <small class="text-muted">{{ event.subscribers.count }} subscribers</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

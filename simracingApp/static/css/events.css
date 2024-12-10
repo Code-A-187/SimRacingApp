@@ -1,0 +1,56 @@
+.event-card {
+    transition: transform 0.2s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    display: none;  /* Initially hidden until loaded */
+}
+
+.event-card .card-body {
+    padding: 1rem;
+}
+
+/* Small event card styles */
+.event-card-small {
+    transition: transform 0.2s;
+}
+
+.event-card-small:hover {
+    transform: translateX(5px);
+}
+
+.event-card-small .card-img {
+    height: 60px;
+    object-fit: cover;
+    display: none;
+}
+
+.event-card-small .card-title {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.event-card-small .card-text {
+    font-size: 0.8rem;
+}
+
+/* Event form styles */
+.event-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.event-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.event-form textarea {
+    min-height: 120px;
+} 

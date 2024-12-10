@@ -6,6 +6,8 @@
         <a href="{% url 'author-posts' pk=post.author.pk %}" class="text-decoration-none">
           {% if post.author.avatar %}
             <img src="{{ post.author.avatar.url }}" alt="{{ post.author.username }}" class="rounded-circle mr-2 avatar-md">
+          {% elif post.author.profile_avatar %}
+            <img src="{{ post.author.profile_avatar.url }}" alt="{{ post.author.username }}" class="rounded-circle mr-2 avatar-md">
           {% else %}
             <img src="{% static 'images/default-avatar.png' %}" alt="Default avatar" class="rounded-circle mr-2 avatar-md">
           {% endif %}
@@ -63,6 +65,8 @@
             <div class="d-flex align-items-start mb-2">
                 {% if last_comment.author.avatar %}
                     <img src="{{ last_comment.author.avatar.url }}" alt="{{ last_comment.author.username }}" class="rounded-circle mr-2 avatar-sm">
+                {% elif last_comment.author.profile_avatar %}
+                    <img src="{{ last_comment.author.profile_avatar.url }}" alt="{{ last_comment.author.username }}" class="rounded-circle mr-2 avatar-sm">
                 {% else %}
                     <img src="{% static 'images/default-avatar.png' %}" alt="Default avatar" class="rounded-circle mr-2 avatar-sm">
                 {% endif %}
@@ -84,6 +88,8 @@
             <div class="d-flex align-items-start mb-2">
                 {% if comment.author.avatar %}
                     <img src="{{ comment.author.avatar.url }}" alt="{{ comment.author.username }}" class="rounded-circle mr-2 avatar-sm">
+                {% elif comment.author.profile_avatar %}
+                    <img src="{{ comment.author.profile_avatar.url }}" alt="{{ comment.author.username }}" class="rounded-circle mr-2 avatar-sm">
                 {% else %}
                     <img src="{% static 'images/default-avatar.png' %}" alt="Default avatar" class="rounded-circle mr-2 avatar-sm">
                 {% endif %}

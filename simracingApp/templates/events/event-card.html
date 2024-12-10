@@ -1,7 +1,21 @@
-<li class="nav-item">
-    <a class="nav-link" href="{% url 'event_detail' event.id %}">
-        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid mb-2">
-        <span>{{ event.title }}</span>
-    </a>
-</li>
+{% load static %}
+<div class="card event-card mb-3">
+    {% if event.image_url %}
+        <img src="{{ event.image_url }}" class="card-img-top" alt="{{ event.title }}" 
+             onerror="this.style.display='none'" onload="this.style.display='block'">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text text-muted">
+            <small>
+                {{ event.start_date|date:"M d" }} - {{ event.end_date|date:"M d, Y" }}
+                <br>
+                Race starts at: {{ event.race_time|time:"H:i" }}
+            </small>
+        </p>
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'event-details' pk=event.pk %}" class="btn btn-sm btn-outline-primary">View Details</a>
+        </div>
+    </div>
+</div>
 
