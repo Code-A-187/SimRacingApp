@@ -7,21 +7,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {% include 'components/post_card.html' with post=post %}
-            {% if user.is_authenticated %}
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Add a Comment</h5>
-                        <form method="post" action="{% url 'add_comment' post.id %}">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea class="form-control" name="content" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            {% endif %}
+            {% include 'posts/post-card.html' with post=post dashboard=False %}
         </div>
     </div>
 </div>

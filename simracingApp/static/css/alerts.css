@@ -1,0 +1,15 @@
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+    border-radius: 15px;
+}
+
+.alert-warning .close {
+    color: #856404;
+    opacity: 0.8;
+}
+
+.alert-warning .close:hover {
+    opacity: 1;
+} 

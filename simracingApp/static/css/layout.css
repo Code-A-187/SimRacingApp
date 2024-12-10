@@ -1,0 +1,19 @@
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main.container {
+    flex: 1 0 auto;
+    padding-bottom: 5rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card {
+    scroll-margin-top: 80px;
+} 

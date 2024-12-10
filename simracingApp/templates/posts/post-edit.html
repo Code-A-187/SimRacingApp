@@ -1,6 +1,5 @@
 {% extends 'common/base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block title %}Edit Post{% endblock %}
 
@@ -10,15 +9,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-center">Edit Post</h3>
+                    <h4 class="mb-0">Edit Post</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post">
                         {% csrf_token %}
-                        {{ form|crispy }}
-                        <div class="text-center mt-4">
+                        <div class="form-group">
+                            {{ form.content }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.image_url }}
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'post-details' pk=post.pk %}" class="btn btn-secondary mr-2">Cancel</a>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
-                            <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,41 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from django.shortcuts import redirect
+from django.contrib import messages
+from simracingApp.posts.models import Post
+from simracingApp.posts.forms import PostAddForm, PostCommentForm
 
 
-class HomeView(TemplateView):
-    template_name = 'common/home.html'
+class HomeView(ListView):
+    model = Post
+    paginate_by = 6
+    context_object_name = 'posts'
+    
+    def get_template_names(self):
+        return ['common/dashboard.html'] if self.request.user.is_authenticated else ['common/home.html']
+
+    def get_context_data(self, **kwargs):
+        if not self.request.user.is_authenticated:
+            return super().get_context_data(**kwargs)
+            
+        return {
+            **super().get_context_data(**kwargs),
+            'form': PostAddForm(),
+            'comment_form': PostCommentForm(),
+            'dashboard': True
+        }
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login-page')
+            
+        content = request.POST.get('content', '').strip()
+        if not content:
+            messages.error(request, 'Post content cannot be empty.')
+            return redirect('home-page')
+
+        Post.objects.create(
+            author=request.user,
+            content=content,
+            image_url=request.POST.get('image_url', '')
+        )
+        return redirect('home-page')

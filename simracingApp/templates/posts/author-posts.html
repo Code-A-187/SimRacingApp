@@ -1,21 +1,20 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-{% block title %}Dashboard - SimRacing App{% endblock %}
+{% block title %}Posts by {{ author.username }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <!-- Post Creation Form -->
-            {% include 'posts/post-add-page.html' %}
-            <!-- Posts Feed -->
-            <div class="posts-feed mt-4">
+            <h4 class="mb-4">Posts by {{ author.username }}</h4>
+            
+            <div class="posts-feed">
                 {% for post in posts %}
                     {% include 'posts/post-card.html' with post=post dashboard=True %}
                 {% empty %}
-                    <div class="text-center">
-                        <p>No posts yet. Be the first to share something!</p>
+                    <div class="alert alert-info text-center">
+                        No posts from {{ author.username }} yet.
                     </div>
                 {% endfor %}
             </div>
@@ -50,4 +49,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 

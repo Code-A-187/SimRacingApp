@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('simracingApp.common.urls')),
     path('accounts/', include('simracingApp.accounts.urls')),
+    path('posts/', include('simracingApp.posts.urls')),
 ]
