@@ -1,69 +1,110 @@
-# To-Do List
+SimRacing App - Development To-Do List
+Core Requirements
 
-1. **Models**
-- [X] Create at least 4 additional independent models beyond User/Profile
+1. Models ✅
 
-2. **Views**
-- [ ] Implement at least 10 views, with at least 5 being class-based views (CBVs)
-  - [X] Login view (CBV)
-  - [X] Register view (CBV)
-  - [X] Logout view (FBV)
-  - [X] Profile details view (CBV)
-  - [X] Profile Edit view (CBV)
-  - [X] Profile delete view (CBV)
-  - [ ] Remaining views needed: 4
-- [ ] Ensure CRUD functionality for all models
+[X] User/Profile
+[X] Post
+[X] Comment
+[X] Event
+[X] Like (M2M relationship)
 
-3. **Forms**
-- [ ] Create at least 5 forms
-  - [X] Registration form
-  - [X] Login form
-  - [X] Profile edit form
-  - [ ] 2 more forms needed
+2. Views ✅
 
-4. **Templates**
-- [ ] Create list view templates
-- [ ] Create detail view templates
-- [X] Create form templates
-  - [X] Profile edit template
-  - [X] Profile delete template
-- [ ] Implement error pages (404, 500)
-- [X] Base template structure (base.html, nav.html, footer.html)
+Class-Based Views
 
-5. **Admin Customization**
-- [ ] Add at least 5 custom options to the admin interface
-- [ ] Set up admin groups with different permissions
+[X] HomeView
+[X] PostAddView
+[X] PostEditView
+[X] PostDetailsView
+[X] AuthorPostListView
+[X] EventListView
+[X] EventDetailsView
+[X] EventCreateView
+[X] EventEditView
+[X] EventDeleteView
+[X] Profile views (details, edit, delete)
 
-6. **Authentication & Authorization**
-- [X] Implement login functionality
-- [X] Implement register functionality
-- [X] Implement logout functionality
-- [X] Profile CRUD operations
-- [ ] Set up permissions for public/private parts
+Function-Based Views
 
-7. **Security**
-- [X] Implement CSRF protection (visible in profile-edit.html)
-- [ ] Implement XSS prevention
-- [ ] Implement SQL injection protection
+[X] toggle_like (REST-capable)
+[X] add_comment
+[X] toggle_subscribe
+[X] logout
+[X] post_delete
 
-8. **Exception Handling & Validation**
-- [ ] Implement server-side validation
-- [ ] Implement client-side validation
-- [ ] Add exception handling to views
+3. Forms ✅
 
-9. **Responsive Design**
-- [X] Bootstrap 4 integration
-- [X] Crispy forms integration
-- [ ] Ensure all pages are responsive
+[X] Registration form
+[X] Login form
+[X] Profile edit form
+[X] PostAddForm/PostEditForm
+[X] EventForm
+[X] PostCommentForm
 
-10. **Bonus Features (Optional)**
-- [ ] Add unit and integration tests
-- [ ] Implement asynchronous views
-- [ ] Extend project with REST capabilities
-- [ ] Deploy the project
+4. Templates
 
-11. **Project Management**
-- [X] Project structure setup
-- [X] Static files (CSS, JS, images)
-- [X] Documentation (README.md, requirements.txt)
-- [ ] Regular commits
+[X] Base template structure
+[X] Home/Dashboard pages
+[X] Post management templates
+[X] Event management templates
+[X] Profile templates
+[ ] Error pages (404, 500)
+
+5. Admin Customization ❌
+
+[ ] Add list display options
+[ ] Implement search fields
+[ ] Add list filters
+[ ] Custom admin actions
+[ ] Field customization
+
+6. Admin Groups ❌
+
+[ ] Set up superuser permissions
+[ ] Configure staff permissions
+[ ] Define permission sets
+[ ] Test access controls
+
+7. Security Features
+
+[X] CSRF protection
+[ ] XSS prevention
+[ ] SQL injection protection
+[X] User authorization
+[X] Form validation
+
+8. Error Handling
+
+[ ] 404 page template
+[ ] 500 page template
+[ ] Custom error messages
+[ ] Global exception handling
+
+#Optional Enhancements
+
+1. Testing
+[ ] Unit tests
+[ ] Integration tests
+[ ] Form tests
+[ ] View tests
+
+2. Performance
+
+[ ] Query optimization
+[ ] Caching implementation
+[ ] Static files optimization
+
+3. Documentation
+
+[ ] Code comments
+[ ] API documentation
+[ ] Setup instructions
+[ ] User guide
+
+Project Management ✅
+
+[X] Project structure
+[X] Dependencies management
+[X] Version control
+[X] Regular commits (19 commits)
