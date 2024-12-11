@@ -6,6 +6,8 @@ from django.views.generic import CreateView, DetailView, UpdateView, ListView
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from django.contrib import messages
+from django.core.cache import cache
+from django.core.exceptions import ValidationError
 
 from .forms import PostAddForm, PostCommentForm, PostEditForm
 from .models import Post
@@ -27,6 +29,10 @@ class PostAddView(LoginRequiredMixin, CreateView):
 
 
 class PostDetailsView(LoginRequiredMixin, DetailView):
+    """
+    Display detailed view of a post.
+    Handles post information display and user interactions.
+    """
     model = Post
     template_name = 'posts/post-details.html'
     context_object_name = 'post'
@@ -85,6 +91,12 @@ def post_delete(request, pk):
 @login_required
 def add_comment(request, pk):
     if request.method == 'POST':
+        # Rate limiting check
+        cache_key = f'user_{request.user.pk}_comment_timeout'
+        if cache.get(cache_key):
+            messages.error(request, 'Please wait before commenting again.')
+            return redirect(request.META.get('HTTP_REFERER', 'home-page'))
+
         post = get_object_or_404(Post, pk=pk)
         form = PostCommentForm(request.POST)
         if form.is_valid():
@@ -92,16 +104,35 @@ def add_comment(request, pk):
             comment.post = post
             comment.author = request.user
             comment.save()
+            
+            # Set rate limit - one comment per 30 seconds
+            cache.set(cache_key, True, 30)
+            
     return redirect(request.META.get('HTTP_REFERER', 'home-page'))
 
 
 @login_required
 def toggle_like(request, pk):
+    """Toggle like status for a post"""
+    post = get_object_or_404(Post, pk=pk)
+    user = request.user
+    is_liked = user in post.likes.all()
     if request.method == 'POST':
-        post = get_object_or_404(Post, pk=pk)
-        if request.user in post.likes.all():
-            post.likes.remove(request.user)
+        # Rate limiting check
+        cache_key = f'user_{request.user.pk}_like_timeout'
+        if cache.get(cache_key):
+            return JsonResponse({'error': 'Please wait before liking again'}, status=429)
+            
+        if is_liked:
+            post.likes.remove(user)
         else:
-            post.likes.add(request.user)
-        return redirect(request.META.get('HTTP_REFERER', 'home-page'))
+            post.likes.add(user)
+            
+        # Set rate limit - one like per 5 seconds
+        cache.set(cache_key, True, 5)
+            
+        return JsonResponse({
+            'liked': is_liked,
+            'likes_count': post.likes.count()
+        })
     return JsonResponse({'error': 'Invalid request'}, status=400)

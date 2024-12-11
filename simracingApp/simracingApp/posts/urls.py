@@ -11,6 +11,6 @@ urlpatterns = (
         path('edit/', views.PostEditView.as_view(), name='post-edit'),
         path('delete/', views.post_delete, name='post-delete'),
         path('comment/', views.add_comment, name='add-comment'),
-        path('like/', views.toggle_like, name='toggle-like'),
+        path('toggle-like/', views.toggle_like, name='toggle-like'),
     ])),
 )

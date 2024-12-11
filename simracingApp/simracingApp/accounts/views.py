@@ -52,6 +52,12 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         return get_object_or_404(UserModel, pk=self.kwargs['pk'])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['subscribed_events'] = user.subscribed_events.all().order_by('start_date')
+        return context
+
 
 def logout_user(request):
     logout(request)

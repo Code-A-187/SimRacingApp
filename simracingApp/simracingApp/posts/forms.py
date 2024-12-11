@@ -1,5 +1,7 @@
 from django import forms
 from simracingApp.posts.models import Post, Comment
+from django.core.exceptions import ValidationError
+from typing import Dict, Any
 
 
 class PostBaseForm(forms.ModelForm):
@@ -72,3 +74,9 @@ class PostCommentForm(forms.ModelForm):
                 }
             )
         }
+
+    def clean_content(self) -> str:
+        content: str = self.cleaned_data.get('content')
+        if len(content) < 2:
+            raise ValidationError("Comment must be at least 2 characters long.")
+        return content.strip()

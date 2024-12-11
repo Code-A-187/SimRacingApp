@@ -61,6 +61,26 @@
                     </ul>
                 </div>
             </div>
+            
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Events you are subscribed to</h5>
+                        <a href="{% url 'event-list' %}" class="btn btn-sm btn-outline-primary">All Events</a>
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    {% if subscribed_events %}
+                        {% for event in subscribed_events %}
+                            <a href="{% url 'event-details' pk=event.pk %}" class="text-decoration-none text-dark">
+                                {% include 'events/event-card-small.html' with event=event %}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted text-center mb-0">Not subscribed to any events yet.</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
