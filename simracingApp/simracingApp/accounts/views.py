@@ -41,6 +41,7 @@ class UserLoginView(LoginView):
     success_url = reverse_lazy('home-page')
 
     def get_success_url(self):
+
         return self.success_url
 
 
@@ -50,18 +51,21 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
+
         return get_object_or_404(UserModel, pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
         context['subscribed_events'] = user.subscribed_events.all().order_by('start_date')
+
         return context
 
 
 def logout_user(request):
     logout(request)
     messages.success(request, 'You have been successfully logged out.')
+
     return redirect('home-page')
 
 
@@ -92,6 +96,7 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         # Only allow users to delete their own profile
         profile = self.get_object()
+
         return self.request.user == profile
 
     def get_context_data(self, **kwargs):
@@ -101,9 +106,11 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             'object_name': self.object.username,
             'cancel_url': reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
         })
+
         return context
 
     def delete(self, request, *args, **kwargs):
         messages.success(request, 'Your profile has been successfully deleted.')
         logout(request)  # Log out the user after deletion
+
         return super().delete(request, *args, **kwargs)

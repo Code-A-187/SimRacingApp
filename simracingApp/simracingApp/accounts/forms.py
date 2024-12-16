@@ -33,18 +33,22 @@ class UserRegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Add Bootstrap classes and placeholders
+
         self.fields['username'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Choose a username'
         })
+
         self.fields['email'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Enter your email'
         })
+
         self.fields['password1'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Choose a password'
         })
+
         self.fields['password2'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Confirm password'

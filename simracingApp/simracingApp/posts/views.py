@@ -113,12 +113,10 @@ def add_comment(request, pk):
 
 @login_required
 def toggle_like(request, pk):
-    """Toggle like status for a post"""
     post = get_object_or_404(Post, pk=pk)
     user = request.user
     is_liked = user in post.likes.all()
     if request.method == 'POST':
-        # Rate limiting check
         cache_key = f'user_{request.user.pk}_like_timeout'
         if cache.get(cache_key):
             return JsonResponse({'error': 'Please wait before liking again'}, status=429)
